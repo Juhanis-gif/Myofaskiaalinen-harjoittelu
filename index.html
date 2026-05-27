@@ -101,7 +101,45 @@
 </head>
 
 <body>
+</style>
+</head>
 
+<body>
+
+<script>
+
+  const salasana = "keho2026";
+
+  const kayttajanSalasana = prompt("Syötä salasana");
+
+  if (kayttajanSalasana !== salasana) {
+
+    document.body.innerHTML = `
+      <div style="
+        background:#0f1720;
+        color:white;
+        height:100vh;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction:column;
+        font-family:Arial;
+        text-align:center;
+        padding:20px;
+      ">
+
+        <h1>Pääsy estetty</h1>
+
+        <p>Väärä salasana.</p>
+
+      </div>
+    `;
+
+  }
+
+</script>
+
+  <div class="hero">
   <div class="hero">
 
     <h1>MYOFASKIAALINEN HARJOITTELU</h1>

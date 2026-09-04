@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fi">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -131,23 +132,39 @@
     font-size:42px;
     margin-bottom:10px;
   ">
-    <h1>
-  MYOFASKIAALINEN<br>
-  HARJOITTELU
-</h1>
-  
+    MYOFASKIAALINEN<br>
+    HARJOITTELU
+  </h1>
 
   <p style="
     margin-bottom:30px;
     color:#d7d7d7;
   ">
-    Syötä salasana avataksesi harjoitukset
+    Kirjaudu avataksesi harjoitukset
   </p>
+
+  <input
+    type="email"
+    id="email"
+    placeholder="Sähköposti"
+    autocomplete="email"
+    style="
+      padding:16px;
+      border-radius:12px;
+      border:none;
+      width:260px;
+      font-size:16px;
+      margin-bottom:12px;
+      text-align:center;
+      box-sizing:border-box;
+    "
+  >
 
   <input
     type="password"
     id="password"
     placeholder="Salasana"
+    autocomplete="current-password"
     style="
       padding:16px;
       border-radius:12px;
@@ -156,11 +173,12 @@
       font-size:16px;
       margin-bottom:20px;
       text-align:center;
+      box-sizing:border-box;
     "
   >
 
   <button
-    onclick="checkPassword()"
+    onclick="loginUser()"
     style="
       background:#d4b06a;
       color:#111;
@@ -500,28 +518,131 @@ Toista harjoitus molemmille puolille.
 </section>
 
 </div>
-
 <script>
 
-function checkPassword() {
+const SUPABASE_URL =
+  "https://uldemyfqpklhhhcmixxh.supabase.co";
 
-  const password = document.getElementById("password").value;
+const SUPABASE_PUBLISHABLE_KEY =
+  "sb_publishable_be8TgBM-8-SMmm3J-NV-Ww_HK6VRdQx";
 
-  if(password === "keho2026") {
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
 
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("content").style.display = "block";
 
-  } else {
+// Näytetään harjoitukset kirjautuneelle käyttäjälle
+function showContent() {
 
-    document.getElementById("error").innerText = "Väärä salasana";
+  document.getElementById("login-screen").style.display = "none";
+  document.getElementById("content").style.display = "block";
+
+}
+
+
+// Näytetään kirjautumisruutu
+function showLogin() {
+
+  document.getElementById("login-screen").style.display = "flex";
+  document.getElementById("content").style.display = "none";
+
+}
+
+
+// Kirjautuminen
+async function loginUser() {
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const errorElement =
+    document.getElementById("error");
+
+  errorElement.innerText = "";
+
+
+  if (!email || !password) {
+
+    errorElement.innerText =
+      "Syötä sähköpostiosoite ja salasana.";
+
+    return;
+
+  }
+
+
+  const { data, error } =
+    await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+
+  if (error) {
+
+    errorElement.innerText =
+      "Kirjautuminen ei onnistunut. Tarkista tunnukset.";
+
+    return;
+
+  }
+
+
+  if (data.session) {
+
+    showContent();
 
   }
 
 }
 
-</script>
 
+// Tarkistetaan olemassa oleva kirjautuminen
+async function checkSession() {
+
+  const { data } =
+    await supabaseClient.auth.getSession();
+
+
+  if (data.session) {
+
+    showContent();
+
+  } else {
+
+    showLogin();
+
+  }
+
+}
+
+
+// Seurataan kirjautumisen muutoksia
+supabaseClient.auth.onAuthStateChange(
+  (_event, session) => {
+
+    if (session) {
+
+      showContent();
+
+    } else {
+
+      showLogin();
+
+    }
+
+  }
+);
+
+
+// Tarkistus heti sivun avautuessa
+checkSession();
+
+</script>
 </body>
 </html>
 

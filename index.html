@@ -585,7 +585,10 @@ async function loginUser() {
   if (error) {
 
     errorElement.innerText =
-      "Kirjautuminen ei onnistunut. Tarkista tunnukset.";
+     if (error) {
+  errorElement.innerText = error.message;
+  return;
+}
 
     return;
 

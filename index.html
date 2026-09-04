@@ -581,18 +581,10 @@ async function loginUser() {
       password: password
     });
 
-
-  if (error) {
-
-    errorElement.innerText =
-     if (error) {
+if (error) {
   errorElement.innerText = error.message;
   return;
 }
-
-    return;
-
-  }
 
 
   if (data.session) {

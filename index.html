@@ -565,6 +565,23 @@ function showLogin() {
 // Kirjautuminen
 async function loginUser() {
 
+    document.getElementById("error").innerText =
+      "Syötä ensin sähköpostiosoitteesi.";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: "https://juhanis-gif.github.io/Myofaskiaalinen-harjoittelu/"
+  });
+
+  if (error) {
+    document.getElementById("error").innerText = error.message;
+    return;
+  }
+
+  document.getElementById("error").innerText =
+    "Salasanan palautusviesti on lähetetty sähköpostiisi.";
+}
   const email =
     document.getElementById("email").value.trim();
 
@@ -650,8 +667,35 @@ supabaseClient.auth.onAuthStateChange(
 checkSession();
 
 </script>
+
+
+<script>
+async function showResetPassword() {
+  const email = document.getElementById("email").value.trim();
+
+  if (!email) {
+    document.getElementById("error").innerText =
+      "Syötä ensin sähköpostiosoitteesi.";
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
+    redirectTo: "https://juhanis-gif.github.io/Myofaskiaalinen-harjoittelu/"
+  });
+
+  if (error) {
+    document.getElementById("error").innerText = error.message;
+    return;
+  }
+
+  document.getElementById("error").innerText =
+    "Salasanan palautusviesti on lähetetty sähköpostiisi.";
+}
+</script>
+
 </body>
 </html>
+
 
     
 

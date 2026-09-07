@@ -233,22 +233,20 @@
     margin-top:15px;
     font-size:14px;
   "
+  >
+    Avaa harjoitukset
+  </button>
+<button
+  onclick="showResetPassword()"
+  style="
+    background:none;
+    border:none;
+    color:#d4b06a;
+    cursor:pointer;
+    margin-top:15px;
+    font-size:14px;
+  "
 >
-  Unohditko salasanasi?
-</button>
-  <p id="error" style="
-    color:#ffb3b3;
-    margin-top:20px;
-  "></p>
-
-</div>
-
-<div id="content" style="display:none;">
-
- 
-  <div class="hero">
-
-    <h1>MYOFASKIAALINEN HARJOITTELU</h1>
 
     <div class="subtitle">
       Kohti joustavampaa kehoa
@@ -643,7 +641,7 @@ async function checkSession() {
 
 }
 
-<script>
+
 // Salasanan vaihtaminen
 async function updatePassword() {
 
@@ -722,10 +720,7 @@ supabaseClient.auth.onAuthStateChange(
 // Tarkistus heti sivun avautuessa
 checkSession();
 
-</script>
 
-
-<script>
 async function showResetPassword() {
   const email = document.getElementById("email").value.trim();
 

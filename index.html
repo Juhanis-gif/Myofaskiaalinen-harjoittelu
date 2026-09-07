@@ -643,6 +643,54 @@ async function checkSession() {
 
 }
 
+<script>
+// Salasanan vaihtaminen
+async function updatePassword() {
+
+  const newPassword =
+    document.getElementById("new-password").value;
+
+  const confirmPassword =
+    document.getElementById("new-password-confirm").value;
+
+  const errorElement =
+    document.getElementById("reset-error");
+
+  errorElement.innerText = "";
+
+  if (!newPassword || !confirmPassword) {
+    errorElement.innerText =
+      "Syötä uusi salasana molempiin kenttiin.";
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    errorElement.innerText =
+      "Salasanat eivät täsmää.";
+    return;
+  }
+
+  if (newPassword.length < 6) {
+    errorElement.innerText =
+      "Salasanan tulee olla vähintään 6 merkkiä.";
+    return;
+  }
+
+  const { error } =
+    await supabaseClient.auth.updateUser({
+      password: newPassword
+    });
+
+  if (error) {
+    errorElement.innerText = error.message;
+    return;
+  }
+
+  errorElement.style.color = "#d4b06a";
+  errorElement.innerText =
+    "Salasana vaihdettu onnistuneesti.";
+}
+
 
 // Seurataan kirjautumisen muutoksia
 supabaseClient.auth.onAuthStateChange(

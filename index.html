@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html lang="fi">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <head>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Myofaskiaalinen harjoittelu</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
 
@@ -45,7 +48,7 @@
       overflow: hidden;
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
-    
+
     iframe {
       width: 100%;
       height: 560px;
@@ -79,41 +82,56 @@
     .button:hover {
       opacity: 0.9;
     }
-@media (max-width: 768px) {
 
-  
- h1 {
-  font-size: 22px;
-  line-height: 1.3;
-  letter-spacing: 0;
-  padding: 0 20px;
-  text-align: center;
+    @media (max-width: 768px) {
 
-    }
+      h1 {
+        font-size: 22px;
+        line-height: 1.3;
+        letter-spacing: 0;
+        padding: 0 20px;
+        text-align: center;
+      }
 
-  .subtitle {
-    font-size: 18px;
-  }
+      .subtitle {
+        font-size: 18px;
+      }
 
-  iframe {
-    height: 260px;
-  }
+      iframe {
+        height: 260px;
+      }
 
-}
       .content {
         padding: 24px;
         font-size: 16px;
       }
-    
-</style>
+
+    }
+
+  </style>
+
 </head>
 
 <body>
 
-  <div id="reset-password-screen" style="display:none; min-height:100vh; align-items:center; justify-content:center; flex-direction:column; text-align:center;">
 
-  <h1 style="color:#d4b06a;">VAIHDA SALASANA</h1>
+<!-- SALASANAN VAIHTAMINEN -->
 
+<div
+  id="reset-password-screen"
+  style="
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    text-align:center;
+  "
+>
+
+  <h1 style="color:#d4b06a;">
+    VAIHDA SALASANA
+  </h1>
 
   <p style="color:#ddd; font-size:18px;">
     Anna uusi salasanasi
@@ -124,7 +142,16 @@
     id="new-password"
     placeholder="Uusi salasana"
     autocomplete="new-password"
-    style="padding:18px; margin:10px; width:320px; max-width:80%; font-size:18px; border-radius:20px; border:none; text-align:center;"
+    style="
+      padding:18px;
+      margin:10px;
+      width:320px;
+      max-width:80%;
+      font-size:18px;
+      border-radius:20px;
+      border:none;
+      text-align:center;
+    "
   >
 
   <input
@@ -132,45 +159,79 @@
     id="new-password-confirm"
     placeholder="Toista uusi salasana"
     autocomplete="new-password"
-    style="padding:18px; margin:10px; width:320px; max-width:80%; font-size:18px; border-radius:20px; border:none; text-align:center;"
+    style="
+      padding:18px;
+      margin:10px;
+      width:320px;
+      max-width:80%;
+      font-size:18px;
+      border-radius:20px;
+      border:none;
+      text-align:center;
+    "
   >
 
   <button
     onclick="updatePassword()"
-    style="padding:18px 30px; margin-top:15px; font-size:18px; border:none; border-radius:20px; background:#d4b06a; cursor:pointer;"
+    style="
+      padding:18px 30px;
+      margin-top:15px;
+      font-size:18px;
+      border:none;
+      border-radius:20px;
+      background:#d4b06a;
+      cursor:pointer;
+    "
   >
     Vaihda salasana
   </button>
 
-  <p id="reset-error" style="color:#e57373; margin-top:15px;"></p>
+  <p
+    id="reset-error"
+    style="
+      color:#e57373;
+      margin-top:15px;
+    "
+  ></p>
 
 </div>
-<div id="login-screen" style="
-  background:#0f1720;
-  color:white;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-  font-family:Arial;
-  text-align:center;
-  padding:20px;
-">
 
-  <h1 style="
-    color:#d4b06a;
-    font-size:42px;
-    margin-bottom:10px;
-  ">
+
+<!-- KIRJAUTUMINEN -->
+
+<div
+  id="login-screen"
+  style="
+    background:#0f1720;
+    color:white;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    font-family:Arial;
+    text-align:center;
+    padding:20px;
+  "
+>
+
+  <h1
+    style="
+      color:#d4b06a;
+      font-size:42px;
+      margin-bottom:10px;
+    "
+  >
     MYOFASKIAALINEN<br>
     HARJOITTELU
   </h1>
 
-  <p style="
-    margin-bottom:30px;
-    color:#d7d7d7;
-  ">
+  <p
+    style="
+      margin-bottom:30px;
+      color:#d7d7d7;
+    "
+  >
     Kirjaudu avataksesi harjoitukset
   </p>
 
@@ -220,23 +281,43 @@
       font-weight:bold;
       cursor:pointer;
     "
->
-  Avaa harjoitukset
-</button>
+  >
+    Avaa harjoitukset
+  </button>
 
-<button
-  onclick="showResetPassword()"
-  style="
-    background:none;
-    border:none;
-    color:#d4b06a;
-    cursor:pointer;
-    margin-top:15px;
-    font-size:14px;
-  "
->
-  Unohditko salasanasi?
-</button>
+  <button
+    onclick="showResetPassword()"
+    style="
+      background:none;
+      border:none;
+      color:#d4b06a;
+      cursor:pointer;
+      margin-top:15px;
+      font-size:14px;
+    "
+  >
+    Unohditko salasanasi?
+  </button>
+
+  <p
+    id="error"
+    style="
+      color:#e57373;
+      margin-top:15px;
+    "
+  ></p>
+
+</div>
+
+
+<!-- VARSINAINEN SISÄLTÖ -->
+
+<div id="content" style="display:none;">
+
+
+  <!-- ALKUSIVU -->
+
+  <section class="hero">
 
     <div class="subtitle">
       Kohti joustavampaa kehoa
@@ -253,302 +334,338 @@
       <div class="content">
 
         <p>
-         Kaikkien faskialinjojen harjoitteissa liikkeen tulisi jakautua tasaisesti pitkin kehoa.
-         Liikkeen suorittamisessa on oleellista, mistä liike lähtee ja mistä liike tuodaan takaisin.
+          Kaikkien faskialinjojen harjoitteissa liikkeen tulisi jakautua tasaisesti pitkin kehoa.
+          Liikkeen suorittamisessa on oleellista, mistä liike lähtee ja mistä liike tuodaan takaisin.
         </p>
-        
-        <p>   
-         <h2>Opitaan yhdessä – sitten harjoittelet itsenäisesti</h2>
 
-<p>
-Harjoitukset käydään ensin yhdessä läpi. Kun tunnet liikkeet ja niiden tarkoituksen,
-voit palata niihin itsenäisesti verkkopalvelun avulla.
-</p>
+        <h2>
+          Opitaan yhdessä – sitten harjoittelet itsenäisesti
+        </h2>
+
+        <p>
+          Harjoitukset käydään ensin yhdessä läpi. Kun tunnet liikkeet ja niiden tarkoituksen,
+          voit palata niihin itsenäisesti verkkopalvelun avulla.
+        </p>
+
         <p>
           Harjoitukset antavat keholle mahdollisuuden löytää liikkeeseen oma luonnollinen tapa liikkua.
         </p>
-        
 
         <div class="button-area">
-  <a href="#harjoitukset" class="button">
-  Aloita harjoittelu
-   </a>
-          
+
+          <a href="#harjoitukset" class="button">
+            Aloita harjoittelu
+          </a>
+
         </div>
 
       </div>
 
     </div>
-<section class="hero" id="harjoitukset">
-        
 
-  <h1 style="margin-top:80px;">
-    HARJOITUSVIDEOT
-  </h1>
-
-  <div class="video-box" style="margin-bottom:50px;">
-    
-    <iframe
-     src="https://www.youtube.com/embed/qkoRdL16UNc"
-      title="Harjoitus 1"
-      allowfullscreen>
-    </iframe>
-
-    <div class="content">
- <h2>Harjoitus 1</h2>
-
-     
-<h3>Eteentaivutus ja taaksetaivutus</h3>
-
-<p>
-Eteentaivutuksessa, takaraivo ylös pitkäksi, selkä pyöristyen rullaten alas.
-Alhaalla voidaan käydä kantapäillä.
-</p>
-
-<p>
-Ylös noustessa liike lähtee päkiöistä ja etenee hallitusti
-selkä pyöreänä rullaten takaisin.
-</p>
-
-<p>
-Taaksetaivutuksessa liike alkaa päästä, jatkuu rintarangasta,
-sen jälkeen lantio lähtee kallistumaan taakse.
-Niska pysyy pitkänä selkärangan jatkeena.
-</p>
-
-<p>
-Liikkeeseen otetaan mukaan yläraajat, kämmenet eteenpäin.
-</p>
-
-<p>
-Kun halutaan liikkuvuutta lisää, tehdään liike yhdellä jalalla.
-
-      </p>
-      
- </div>
-      
-   
-</div>
-  
-  
+  </section>
 
 
+  <!-- HARJOITUKSET -->
 
-  
-  <div class="video-box" style="margin-bottom:50px;">
+  <section class="hero" id="harjoitukset">
 
-    <iframe
-      src="https://www.youtube.com/embed/nBSis9H6-II"
-      title="Harjoitus 2"
-      allowfullscreen>
-    </iframe>
-
-   <div class="content">
-
-  <h2>Harjoitus 2</h2>
-
-  <h3>Askel eteen ja taakse</h3>
-
-<p>
-Askel eteenpäin, kädet sisäkiertoon, takana oleva jalka pysyy polvesta suorana.
-Liikkeestä palataan takaisin vetäisten ylös tukijalan puolelta.
-  
-Alhaalla voidaan käydä kantapäällä.
-</p>
-
- </p> 
-Askel taakse, jalka ja pää lähtee samanaikaisesti, sitten rintaranka ja viimeisenä lantio.
-
-Taakse astuva jalka pysyy polvesta suorana.
-Liikkeestä palataan takaisin vetäisten ylös tukijalan puolelta.
-  
-Ylös tullessa liike alkaa pienestä ponnistuksesta päkiällä.
+    <h1 style="margin-top:80px;">
+      HARJOITUSVIDEOT
+    </h1>
 
 
-<p>
+    <!-- HARJOITUS 1 -->
 
-</p>
-      </p>
+    <div class="video-box">
+
+      <iframe
+        src="https://www.youtube.com/embed/qkoRdL16UNc"
+        title="Harjoitus 1"
+        allowfullscreen>
+      </iframe>
+
+      <div class="content">
+
+        <h2>Harjoitus 1</h2>
+
+        <h3>Eteentaivutus ja taaksetaivutus</h3>
+
+        <p>
+          Eteentaivutuksessa, takaraivo ylös pitkäksi, selkä pyöristyen rullaten alas.
+          Alhaalla voidaan käydä kantapäillä.
+        </p>
+
+        <p>
+          Ylös noustessa liike lähtee päkiöistä ja etenee hallitusti
+          selkä pyöreänä rullaten takaisin.
+        </p>
+
+        <p>
+          Taaksetaivutuksessa liike alkaa päästä, jatkuu rintarangasta,
+          sen jälkeen lantio lähtee kallistumaan taakse.
+          Niska pysyy pitkänä selkärangan jatkeena.
+        </p>
+
+        <p>
+          Liikkeeseen otetaan mukaan yläraajat, kämmenet eteenpäin.
+        </p>
+
+        <p>
+          Kun halutaan liikkuvuutta lisää, tehdään liike yhdellä jalalla.
+        </p>
+
+      </div>
+
     </div>
 
-  </div>
 
-  <div class="video-box" style="margin-bottom:50px;">
+    <!-- HARJOITUS 2 -->
 
-    <iframe
-      src="https://www.youtube.com/embed/DbW8YIDawl8"
-      title="Harjoitus 3"
-      allowfullscreen>
-    </iframe>
+    <div class="video-box">
 
-    <div class="content">
-      <h2>Harjoitus 3</h2>
-      <p>
+      <iframe
+        src="https://www.youtube.com/embed/nBSis9H6-II"
+        title="Harjoitus 2"
+        allowfullscreen>
+      </iframe>
+
+      <div class="content">
+
+        <h2>Harjoitus 2</h2>
+
+        <h3>Askel eteen ja taakse</h3>
+
+        <p>
+          Askel eteenpäin, kädet sisäkiertoon, takana oleva jalka pysyy polvesta suorana.
+          Liikkeestä palataan takaisin vetäisten ylös tukijalan puolelta.
+
+          Alhaalla voidaan käydä kantapäällä.
+        </p>
+
+        <p>
+          Askel taakse, jalka ja pää lähtee samanaikaisesti, sitten rintaranka ja viimeisenä lantio.
+
+          Taakse astuva jalka pysyy polvesta suorana.
+          Liikkeestä palataan takaisin vetäisen ylös tukijalan puolelta.
+
+          Ylös tullessa liike alkaa pienestä ponnistuksesta päkiällä.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- HARJOITUS 3 -->
+
+    <div class="video-box">
+
+      <iframe
+        src="https://www.youtube.com/embed/DbW8YIDawl8"
+        title="Harjoitus 3"
+        allowfullscreen>
+      </iframe>
+
+      <div class="content">
+
+        <h2>Harjoitus 3</h2>
+
         <h2>Rintarangan kierto</h2>
 
-<p>
-Aseta kädet rintarangalle.
+        <p>
+          Aseta kädet rintarangalle.
 
-Sivutaivutus, pää lähtee viemään liikettä, rintaranka seuraa ja lantio tulee hieman mukaan.
-</p>
-Liikkeeseen otetaan mukaan kierto, rintakehä kiertyy sivulle ja eteenpäin.
-Lantion pysyessä vakaana koko liikkeen ajan.
-</p>
-Rintakehää kierretään myös taakase, lantion pysyessä vakaana koko liikkeen ajan.
+          Sivutaivutus, pää lähtee viemään liikettä, rintaranka seuraa ja lantio tulee hieman mukaan.
+        </p>
 
-</p>
+        <p>
+          Liikkeeseen otetaan mukaan kierto, rintakehä kiertyy sivulle ja eteenpäin.
+          Lantion pysyessä vakaana koko liikkeen ajan.
+        </p>
 
-<p>
-Jatka harjoitusta samoin liikkein,
-mutta anna käden kiertyä liikkeen mukana.
+        <p>
+          Rintakehää kierretään myös taakase, lantion pysyessä vakaana koko liikkeen ajan.
+        </p>
 
-</p>
-      </p>
+        <p>
+          Jatka harjoitusta samoin liikkein,
+          mutta anna käden kiertyä liikkeen mukana.
+        </p>
+
+      </div>
+
     </div>
 
-  </div>
 
-  <div class="video-box" style="margin-bottom:50px;">
+    <!-- HARJOITUS 4 -->
 
-    <iframe
-      src="https://www.youtube.com/embed/P-3fdgaF4RA"
-      title="Harjoitus 4"
-      allowfullscreen>
-    </iframe>
+    <div class="video-box">
 
-    <div class="content">
-      <h2>Harjoitus 4</h2>
-      <p>
+      <iframe
+        src="https://www.youtube.com/embed/P-3fdgaF4RA"
+        title="Harjoitus 4"
+        allowfullscreen>
+      </iframe>
+
+      <div class="content">
+
+        <h2>Harjoitus 4</h2>
+
         <h2>Kehon ulkosivu – askel taakse ja eteen</h2>
 
-<p>
-Lateraalilinja toimii kehon rotaatiolinjana,
-jolloin lantio saa kiertyä liikkeen mukana.
-<p>
-Astu askel ristiin taakse.
-Eteen jäävä jalka toimii tukijalkana.
+        <p>
+          Lateraalilinja toimii kehon rotaatiolinjana,
+          jolloin lantio saa kiertyä liikkeen mukana.
+        </p>
 
-Liike vedetään takaisin tukijalan ulkosyrjän kautta.
+        <p>
+          Astu askel ristiin taakse.
+          Eteen jäävä jalka toimii tukijalkana.
 
-Käsien liike jatkuu samalla tavalla kuin edellisessä harjoituksessa.
+          Liike vedetään takaisin tukijalan ulkosyrjän kautta.
 
-Toista liike molemmille puolille.
-</p>
+          Käsien liike jatkuu samalla tavalla kuin edellisessä harjoituksessa.
 
-<p>
-Eteenpäin astuessa käsien liike pysyy samana.
+          Toista liike molemmille puolille.
+        </p>
 
-Astu askel eteenpäin,
-jolloin tukijalaksi jää taakse jäävä jalka.
+        <p>
+          Eteenpäin astuessa käsien liike pysyy samana.
 
-Liike vedetään rauhallisesti takaisin tukijalan kautta.
-</p>
-      </p>
-    </div>
+          Astu askel eteenpäin,
+          jolloin tukijalaksi jää taakse jäävä jalka.
 
-  </div>
+          Liike vedetään rauhallisesti takaisin tukijalan kautta.
+        </p>
 
-  <div class="video-box" style="margin-bottom:50px;">
-
-    <iframe
-      src="https://www.youtube.com/embed/FtiuASzxaAg"
-      title="Harjoitus 5"
-      allowfullscreen>
-    </iframe>
-
-    <div class="content">
-      <h2>Harjoitus 5</h2>
-      <p>
-       <h2>Kehon ristikkäinen kiertolinja</h2>
-
-<p>
-Eteenpäin astuttaessa ristikkäinen käsi liikkuu eteen
-ja toinen käsi avautuu vaakatasossa taakse.
-
-Liikkeestä palataan takaisin vetäisten kehoa
-takimmaisella jalalla.
-</p>
-
-<p>
-Eteentaivutuksessa ristikkäinen käsi ja jalka kohtaavat toisensa.
-
-Alhaalla voidaan käydä kantapäällä.
-Takaisin noustessa liike alkaa pienellä ponnistuksella päkiällä
-ja etenee rauhallisesti takaisin ylös.
-</p>
-Toista harjoitus molemmille puolille.
-</p>
-      </p>
-    </div>
-
-  </div>
-
-  <div class="video-box">
-
-    <iframe
-      src="https://www.youtube.com/embed/crMgI0pO7X4"
-      title="Harjoitus 6"
-      allowfullscreen>
-    </iframe>
-
-    <div class="content">
-      <h2>Harjoitus 6</h2>
-      <p>
-       <h2>Kehon takaosan ristikkäinen linja</h2>
-
-<p>
-Astu askel eteenpäin samalla kun vastakkaisen puolen käsi
-liikkuu vartalon edestä ristiin.
-
-Sivulle viistoon astuttaessa polvi saa kääntyä hieman sisäänpäin,
-pysyen kuitenkin kakkos varpaan linjalla, (isovarpaan vieressä).
-</p>
-
-<p>
-Jatka liikettä sivulle niin,
-että tukijalka pysyy mahdollisimman suorana.
-
-Lopuksi astu vielä askel ristiin eteen.
-</p>
-Toista harjoitus molemmille puolille.
-</p>
-      </p>
-    </div>
-
-  </div>
-
-</section>
-  </div>
-</section>
-
-<section class="hero">
-
-  <div class="video-box">
-
-    <div class="content" style="text-align:center;">
-
-      <h2>Kiitos harjoituksesta</h2>
-
-      <p>
-        Anna kehon rauhoittua hetkeksi harjoituksen jälkeen.
-      </p>
-
-      <p>
-        Hengitä rauhallisesti ja huomaa miltä kehossa tuntuu juuri nyt.
-      </p>
-
-      <p>
-        Voit palata harjoituksiin aina omaan tahtiin.
-      </p>
+      </div>
 
     </div>
 
-  </div>
+
+    <!-- HARJOITUS 5 -->
+
+    <div class="video-box">
+
+      <iframe
+        src="https://www.youtube.com/embed/FtiuASzxaAg"
+        title="Harjoitus 5"
+        allowfullscreen>
+      </iframe>
+
+      <div class="content">
+
+        <h2>Harjoitus 5</h2>
+
+        <h2>Kehon ristikkäinen kiertolinja</h2>
+
+        <p>
+          Eteenpäin astuttaessa ristikkäinen käsi liikkuu eteen
+          ja toinen käsi avautuu vaakatasossa taakse.
+
+          Liikkeestä palataan takaisin vetäisen kehoa
+          takimmaisella jalalla.
+        </p>
+
+        <p>
+          Eteentaivutuksessa ristikkäinen käsi ja jalka kohtaavat toisensa.
+
+          Alhaalla voidaan käydä kantapäällä.
+          Takaisin noustessa liike alkaa pienellä ponnistuksella päkiällä
+          ja etenee rauhallisesti takaisin ylös.
+        </p>
+
+        <p>
+          Toista harjoitus molemmille puolille.
+        </p>
+
+      </div>
+
+    </div>
 
 
-</section>
+    <!-- HARJOITUS 6 -->
+
+    <div class="video-box">
+
+      <iframe
+        src="https://www.youtube.com/embed/crMgI0pO7X4"
+        title="Harjoitus 6"
+        allowfullscreen>
+      </iframe>
+
+      <div class="content">
+
+        <h2>Harjoitus 6</h2>
+
+        <h2>Kehon takaosan ristikkäinen linja</h2>
+
+        <p>
+          Astu askel eteenpäin samalla kun vastakkaisen puolen käsi
+          liikkuu vartalon edestä ristiin.
+
+          Sivulle viistoon astuttaessa polvi saa kääntyä hieman sisäänpäin,
+          pysyen kuitenkin kakkos varpaan linjalla, (isovarpaan vieressä).
+        </p>
+
+        <p>
+          Jatka liikettä sivulle niin,
+          että tukijalka pysyy mahdollisimman suorana.
+
+          Lopuksi astu vielä askel ristiin eteen.
+        </p>
+
+        <p>
+          Toista harjoitus molemmille puolille.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- KIITOS HARJOITUKSESTA -->
+
+  <section class="hero">
+
+    <div class="video-box">
+
+      <div
+        class="content"
+        style="text-align:center;"
+      >
+
+        <h2>
+          Kiitos harjoituksesta
+        </h2>
+
+        <p>
+          Anna kehon rauhoittua hetkeksi harjoituksen jälkeen.
+        </p>
+
+        <p>
+          Hengitä rauhallisesti ja huomaa miltä kehossa tuntuu juuri nyt.
+        </p>
+
+        <p>
+          Voit palata harjoituksiin aina omaan tahtiin.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
 
 </div>
+
+
+<!-- SUPABASE -->
+
 <script>
 
 const SUPABASE_URL =
@@ -567,6 +684,7 @@ const supabaseClient = supabase.createClient(
 function showContent() {
 
   document.getElementById("login-screen").style.display = "none";
+  document.getElementById("reset-password-screen").style.display = "none";
   document.getElementById("content").style.display = "block";
 
 }
@@ -576,6 +694,7 @@ function showContent() {
 function showLogin() {
 
   document.getElementById("login-screen").style.display = "flex";
+  document.getElementById("reset-password-screen").style.display = "none";
   document.getElementById("content").style.display = "none";
 
 }
@@ -583,32 +702,50 @@ function showLogin() {
 
 // Kirjautuminen
 async function loginUser() {
-  const email = document.getElementById("email").value.trim();
-  const password = document.getElementById("password").value;
-  const errorElement = document.getElementById("error");
+
+  const email =
+    document.getElementById("email").value.trim();
+
+  const password =
+    document.getElementById("password").value;
+
+  const errorElement =
+    document.getElementById("error");
 
   errorElement.innerText = "";
 
   if (!email || !password) {
+
     errorElement.innerText =
       "Syötä sähköpostiosoite ja salasana.";
+
     return;
+
   }
 
   const { data, error } =
     await supabaseClient.auth.signInWithPassword({
+
       email: email,
       password: password
+
     });
 
   if (error) {
-    errorElement.innerText = error.message;
+
+    errorElement.innerText =
+      error.message;
+
     return;
+
   }
 
   if (data.session) {
+
     showContent();
+
   }
+
 }
 
 
@@ -617,7 +754,6 @@ async function checkSession() {
 
   const { data } =
     await supabaseClient.auth.getSession();
-
 
   if (data.session) {
 
@@ -644,53 +780,75 @@ async function updatePassword() {
   const errorElement =
     document.getElementById("reset-error");
 
+  errorElement.style.color = "#e57373";
   errorElement.innerText = "";
 
   if (!newPassword || !confirmPassword) {
+
     errorElement.innerText =
       "Syötä uusi salasana molempiin kenttiin.";
+
     return;
+
   }
 
   if (newPassword !== confirmPassword) {
+
     errorElement.innerText =
       "Salasanat eivät täsmää.";
+
     return;
+
   }
 
   if (newPassword.length < 6) {
+
     errorElement.innerText =
       "Salasanan tulee olla vähintään 6 merkkiä.";
+
     return;
+
   }
 
   const { error } =
     await supabaseClient.auth.updateUser({
+
       password: newPassword
+
     });
 
   if (error) {
-    errorElement.innerText = error.message;
+
+    errorElement.innerText =
+      error.message;
+
     return;
+
   }
 
   errorElement.style.color = "#d4b06a";
+
   errorElement.innerText =
     "Salasana vaihdettu onnistuneesti.";
+
 }
 
 
 // Seurataan kirjautumisen muutoksia
 supabaseClient.auth.onAuthStateChange(
+
   (_event, session) => {
 
     if (_event === "PASSWORD_RECOVERY") {
 
       document.getElementById("login-screen").style.display = "none";
+
       document.getElementById("content").style.display = "none";
+
       document.getElementById("reset-password-screen").style.display = "flex";
 
       return;
+
     }
 
     if (session) {
@@ -704,6 +862,7 @@ supabaseClient.auth.onAuthStateChange(
     }
 
   }
+
 );
 
 
@@ -711,32 +870,45 @@ supabaseClient.auth.onAuthStateChange(
 checkSession();
 
 
+// Salasanan palautusviestin lähettäminen
 async function showResetPassword() {
-  const email = document.getElementById("email").value.trim();
+
+  const email =
+    document.getElementById("email").value.trim();
 
   if (!email) {
+
     document.getElementById("error").innerText =
       "Syötä ensin sähköpostiosoitteesi.";
+
     return;
+
   }
 
-  const { error } = await supabaseClient.auth.resetPasswordForEmail(email, {
-    redirectTo: "https://juhanis-gif.github.io/Myofaskiaalinen-harjoittelu/"
-  });
+  const { error } =
+    await supabaseClient.auth.resetPasswordForEmail(
+      email,
+      {
+        redirectTo:
+          "https://juhanis-gif.github.io/Myofaskiaalinen-harjoittelu/"
+      }
+    );
 
   if (error) {
-    document.getElementById("error").innerText = error.message;
+
+    document.getElementById("error").innerText =
+      error.message;
+
     return;
+
   }
 
   document.getElementById("error").innerText =
     "Salasanan palautusviesti on lähetetty sähköpostiisi.";
+
 }
+
 </script>
 
 </body>
 </html>
-
-
-    
-

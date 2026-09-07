@@ -648,6 +648,15 @@ async function checkSession() {
 supabaseClient.auth.onAuthStateChange(
   (_event, session) => {
 
+    if (_event === "PASSWORD_RECOVERY") {
+
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("content").style.display = "none";
+      document.getElementById("reset-password-screen").style.display = "flex";
+
+      return;
+    }
+
     if (session) {
 
       showContent();
